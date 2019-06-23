@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace BigFiles
 {
@@ -8,11 +9,27 @@ namespace BigFiles
         {
             Console.WriteLine("file path");
 
-            var dictionary = WordProcessor.GetAllWords(Console.ReadLine());
+            var filePath = Console.ReadLine();
+            if(!File.Exists(filePath))
+            {
+                Console.WriteLine("file does not exist");
+                return;
+            }
+
+            var dictionary = WordProcessor.GetAllWords();
 
             Console.WriteLine("file to write words");
 
-            WordProcessor.WriteWords(dictionary, Console.ReadLine());
+            filePath = Console.ReadLine();
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("file does not exist");
+                return;
+            }
+
+            WordProcessor.WriteWords(dictionary, filePath);
+
+            Console.ReadKey();
         }
     }
 }
